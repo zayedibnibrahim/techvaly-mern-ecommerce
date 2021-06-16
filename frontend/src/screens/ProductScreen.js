@@ -3,7 +3,7 @@ import { Row, Col, Image, ListGroup, Button, Form } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import Rating from '../components/Rating'
 import { useDispatch, useSelector } from 'react-redux'
-import { productDetails } from '../actions/productActions'
+import { listProductDetails } from '../actions/productActions'
 import Loader from '../components/Loader'
 import Message from '../components/Message'
 const ProductScreen = ({ history, match }) => {
@@ -11,13 +11,11 @@ const ProductScreen = ({ history, match }) => {
 
   const dispatch = useDispatch()
 
-  const singleProductDetails = useSelector(
-    (state) => state.singleProductDetails
-  )
-  const { loading, error, product } = singleProductDetails
+  const productDetails = useSelector((state) => state.productDetails)
+  const { loading, error, product } = productDetails
 
   useEffect(() => {
-    dispatch(productDetails(match.params.id))
+    dispatch(listProductDetails(match.params.id))
   }, [dispatch, match])
 
   const addToCartHandler = () => {
@@ -32,7 +30,7 @@ const ProductScreen = ({ history, match }) => {
       {loading ? (
         <Loader></Loader>
       ) : error ? (
-        <Message>{error}</Message>
+        <Message variant={'danger'}>{error}</Message>
       ) : (
         <Row>
           <Col md={6}>
@@ -97,7 +95,7 @@ const ProductScreen = ({ history, match }) => {
                 <Button
                   onClick={addToCartHandler}
                   variant='dark'
-                  size='lg'
+                  style={{ width: '-webkit-fill-available' }}
                   disabled={product.countInStock === 0}
                 >
                   Add To Cart

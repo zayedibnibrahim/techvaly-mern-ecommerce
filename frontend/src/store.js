@@ -9,7 +9,7 @@ import {
 
 const reducer = combineReducers({
   productList: productListReducer,
-  singleProductDetails: productDetailsReducer,
+  productDetails: productDetailsReducer,
   cart: cartReducer,
 })
 
