@@ -1,11 +1,11 @@
-const express = require('express')
-const dotenv = require('dotenv')
-const colors = require('colors')
-const connectDB = require('./config/db')
-const productRoutes = require('./routes/productRoutes')
-const userRoute = require('./routes/userRoutes')
-const orderRoutes = require('./routes/orderRoutes')
-const { notFound, errorHandler } = require('./middleware/errorMiddleware')
+import express from 'express'
+import dotenv from 'dotenv'
+import colors from 'colors'
+import connectDB from './config/db.js'
+import productRoutes from './routes/productRoutes.js'
+import userRoute from './routes/userRoutes.js'
+import orderRoutes from './routes/orderRoutes.js'
+import { notFound, errorHandler } from './middleware/errorMiddleware.js'
 dotenv.config()
 const app = express()
 

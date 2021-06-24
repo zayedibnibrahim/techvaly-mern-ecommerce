@@ -1,6 +1,6 @@
-const asyncHandler = require('express-async-handler')
-const User = require('../models/userModel')
-const generateToken = require('../utils/generateToken')
+import asyncHandler from 'express-async-handler'
+import User from '../models/userModel.js'
+import generateToken from '../utils/generateToken.js'
 
 // @desc    Auth Users and get Token
 // @route   POST /api/users/login
@@ -104,4 +104,13 @@ const updateUserProfile = asyncHandler(async (req, res) => {
     throw new Error('User Not Found')
   }
 })
-module.exports = { authUser, getUserProfile, registerUser, updateUserProfile }
+
+// @desc    Get all users
+// @route   GET /api/users
+// @access  Private/Admin
+const getUsers = asyncHandler(async (req, res) => {
+  const users = await User.find({})
+  res.json(users)
+})
+
+export { authUser, getUserProfile, registerUser, updateUserProfile, getUsers }
