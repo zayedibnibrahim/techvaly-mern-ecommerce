@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react'
 import { Form, Button, Row, Col, Table } from 'react-bootstrap'
 import { LinkContainer } from 'react-router-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faTimes } from '@fortawesome/free-solid-svg-icons'
 import Message from '../components/Message'
 import Loader from '../components/Loader'
 import { getUserDetails, updateUserProfile } from '../actions/userAction'
@@ -132,14 +134,14 @@ const ProfileScreen = ({ history }) => {
                     {order.isPaid ? (
                       order.paidAt.substring(0, 10)
                     ) : (
-                      <i className='fas fa-times' style={{ color: 'red' }}></i>
+                      <FontAwesomeIcon icon={faTimes} color='red' />
                     )}
                   </td>
                   <td>
                     {order.isDelivered ? (
                       order.deliveredAt.substring(0, 10)
                     ) : (
-                      <i className='fas fa-times' style={{ color: 'red' }}></i>
+                      <FontAwesomeIcon icon={faTimes} color='red' />
                     )}
                   </td>
                   <td>

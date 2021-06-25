@@ -57,7 +57,7 @@ const registerUser = asyncHandler(async (req, res) => {
   }
 })
 
-// @desc    get users profile
+// @desc    get user's profile
 // @route   GET /api/users/profile
 // @access  Private
 
@@ -78,7 +78,7 @@ const getUserProfile = asyncHandler(async (req, res) => {
 })
 
 // @desc    Update users profile
-// @route   PUT /api/users/profile
+// @route   PUT /api/users/profile/
 // @access  Private
 
 const updateUserProfile = asyncHandler(async (req, res) => {
@@ -113,4 +113,70 @@ const getUsers = asyncHandler(async (req, res) => {
   res.json(users)
 })
 
-export { authUser, getUserProfile, registerUser, updateUserProfile, getUsers }
+// @desc    Delete user
+// @route   DELETE /api/users/:id
+// @access  Private/Admin
+const deleteUser = asyncHandler(async (req, res) => {
+  const user = await User.findById(req.params.id)
+  if (user) {
+    await user.remove()
+    res.json({
+      message: 'User Removed',
+    })
+  } else {
+    res.status(404)
+    throw new Error('User Not Found')
+  }
+})
+
+// @desc    Get  user by Id
+// @route   GET /api/users/:id
+// @access  Private/Admin
+const getUserById = asyncHandler(async (req, res) => {
+  const user = await User.findById(req.params.id).select('-password')
+  if (user) {
+    res.json(user)
+  } else {
+    res.status(404)
+    throw new Error('User Not Found')
+  }
+})
+
+// @desc    Update users profile
+// @route   PUT /api/users/profile/
+// @access  Private
+
+const updateUser = asyncHandler(async (req, res) => {
+  const user = await User.findById(req.params.id)
+
+  if (user) {
+    user.name = req.body.name || user.name
+    user.email = req.body.email || user.email
+    user.isAdmin = req.body.isAdmin
+    if (req.body.password) {
+      user.password = req.body.password
+    }
+
+    const updatedUser = await user.save()
+    res.json({
+      _id: updatedUser._id,
+      name: updatedUser.name,
+      email: updatedUser.email,
+      isAdmin: updatedUser.isAdmin,
+    })
+  } else {
+    req.status(404)
+    throw new Error('User Not Found')
+  }
+})
+
+export {
+  authUser,
+  getUserProfile,
+  registerUser,
+  updateUserProfile,
+  getUsers,
+  deleteUser,
+  getUserById,
+  updateUser,
+}
