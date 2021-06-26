@@ -9,8 +9,11 @@ import {
   orderPayReducer,
 } from './reducers/orderReducers'
 import {
+  productCreateReducer,
+  productDeleteReducer,
   productDetailsReducer,
   productListReducer,
+  productUpdateReducer,
 } from './reducers/productReducers'
 import {
   userDeleteReducer,
@@ -24,7 +27,10 @@ import {
 
 const reducer = combineReducers({
   productList: productListReducer,
+  productDelete: productDeleteReducer,
+  productCreate: productCreateReducer,
   productDetails: productDetailsReducer,
+  productUpdate: productUpdateReducer,
   cart: cartReducer,
   userLogin: userLoginReducer,
   userRegister: userRegisterReducer,
@@ -51,6 +57,7 @@ const userInfoFromStorage = localStorage.getItem('userInfo')
 const shippingAddressFromStorage = localStorage.getItem('shippingAddress')
   ? JSON.parse(localStorage.getItem('shippingAddress'))
   : {}
+
 //initialStates
 const initialState = {
   cart: {

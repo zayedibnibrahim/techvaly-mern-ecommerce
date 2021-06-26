@@ -5,6 +5,7 @@ import Product from '../components/Product'
 import { useDispatch, useSelector } from 'react-redux'
 import Loader from '../components/Loader'
 import Message from '../components/Message'
+import { PRODUCT_DETAILS_RESET } from '../constants/productConstants'
 const HomeScreen = () => {
   const dispatch = useDispatch()
 
@@ -13,6 +14,7 @@ const HomeScreen = () => {
 
   useEffect(() => {
     dispatch(listProducts())
+    dispatch({ type: PRODUCT_DETAILS_RESET })
   }, [dispatch])
 
   return (
