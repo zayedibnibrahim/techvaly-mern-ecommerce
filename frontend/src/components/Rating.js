@@ -7,37 +7,27 @@ const Rating = ({ value, text }) => {
     <div>
       <span>
         <FontAwesomeIcon
-          icon={
-            value / text >= 1 ? faStar : value >= 0.5 ? faStarHalfAlt : fullStar
-          }
+          icon={value >= 1 ? faStar : value >= 0.5 ? faStarHalfAlt : fullStar}
         />
       </span>
       <span>
         <FontAwesomeIcon
-          icon={
-            value / text >= 2 ? faStar : value >= 1.5 ? faStarHalfAlt : fullStar
-          }
+          icon={value >= 2 ? faStar : value >= 1.5 ? faStarHalfAlt : fullStar}
         />
       </span>
       <span>
         <FontAwesomeIcon
-          icon={
-            value / text >= 3 ? faStar : value >= 2.5 ? faStarHalfAlt : fullStar
-          }
+          icon={value >= 3 ? faStar : value >= 2.5 ? faStarHalfAlt : fullStar}
         />
       </span>
       <span>
         <FontAwesomeIcon
-          icon={
-            value / text >= 4 ? faStar : value >= 3.5 ? faStarHalfAlt : fullStar
-          }
+          icon={value >= 4 ? faStar : value >= 3.5 ? faStarHalfAlt : fullStar}
         />
       </span>
       <span>
         <FontAwesomeIcon
-          icon={
-            value / text >= 5 ? faStar : value >= 4.5 ? faStarHalfAlt : fullStar
-          }
+          icon={value >= 5 ? faStar : value >= 4.5 ? faStarHalfAlt : fullStar}
         />
       </span>
       <span>{text && text} Reviews</span>
