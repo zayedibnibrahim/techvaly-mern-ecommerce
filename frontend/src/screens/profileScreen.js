@@ -9,7 +9,7 @@ import Loader from '../components/Loader'
 import { getUserDetails, updateUserProfile } from '../actions/userAction'
 import { listMyOrders } from '../actions/orderActions'
 import { USER_UPDATE_PROFILE_RESET } from '../constants/userConstants'
-
+import Meta from '../components/Meta'
 const ProfileScreen = ({ history }) => {
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
@@ -57,6 +57,7 @@ const ProfileScreen = ({ history }) => {
 
   return (
     <Row>
+      {user.name && <Meta title={`Profile | ${user.name} | Tech valy`} />}
       <Col md={3}>
         <h1>User Profile</h1>
         {message && <Message variant='danger'>{message}</Message>}

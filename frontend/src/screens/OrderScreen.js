@@ -18,6 +18,7 @@ import {
   ORDER_DELIVERED_RESET,
   ORDER_PAY_RESET,
 } from '../constants/orderConstants'
+import Meta from '../components/Meta'
 
 const OrderScreen = ({ match, history }) => {
   const orderId = match.params.id
@@ -104,6 +105,7 @@ const OrderScreen = ({ match, history }) => {
   ) : (
     <>
       <h1>Order {order._id}</h1>
+      <Meta title='Techvaly | Order' />
       <Row>
         <Col md={8}>
           <ListGroup variant='flush'>

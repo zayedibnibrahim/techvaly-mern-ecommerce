@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom'
 import { Row, Col, ListGroup, Image, Form, Button, Card } from 'react-bootstrap'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTrash } from '@fortawesome/free-solid-svg-icons'
+import Meta from '../components/Meta'
 const CartScreen = ({ match, location, history }) => {
   const productId = match.params.id
 
@@ -30,6 +31,7 @@ const CartScreen = ({ match, location, history }) => {
   }
   return (
     <Row>
+      <Meta title='Techvaly | Cart' />
       <Col md={8}>
         {cartItems.length === 0 ? (
           <Message variant={'info'}>
